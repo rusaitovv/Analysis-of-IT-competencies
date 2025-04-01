@@ -31,7 +31,7 @@ def get_user_input():
         city = input("Введите город: ").strip()
         city_id = get_city_id(city)
         if city_id:
-            return profession, city_id
+            return profession, city_id, city
         print(f"Город '{city}' не найден. Попробуйте еще раз.")
 
 
@@ -83,7 +83,7 @@ def fetch_vacancies(profession, area_id):
 
 def main():
     # Ввод данных
-    profession, city_id = get_user_input()
+    profession, city_id, city = get_user_input()
 
     # Сбор данных
     print("\nНачинаем сбор данных...")
@@ -110,10 +110,10 @@ def main():
     ).sort_values('Рейтинг', ascending=False)
 
     # Сохранение и вывод
-    df.to_csv('skills_matrix.csv', index=False)
+    df.to_csv(f'{profession}_{city}_skills_matrix.csv', index=False)
     print(f"\nТоп-10 навыков для '{profession}':\n")
     print(df.head(10))
-    print("\nПолные данные сохранены в skills_matrix.csv")
+    print(f"\nПолные данные сохранены в {profession}_{city}_skills_matrix.csv")
 
 
 if __name__ == "__main__":
