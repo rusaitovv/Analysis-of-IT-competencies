@@ -4,18 +4,15 @@ from csv_extraction import get_vacancies_as_dataframe, base, get_study_program_a
 from text_skills_extraction.main_extract import process_folder
 from text_skills_extraction.dictionaries import university_rank_values
 
-uni_percentage = ...
+uni_percentage = 0.3
 
-def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, studied_skills: list[str],
-              total_score: float, experience: bool, missing_skills: set[str], university: str):
+def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, studied_programs: list[str],
+              total_score: float, missing_skills: set[str], universities: list[str], vacancy: str):
     """
     Вычисляет релевантность кандидата на основе его навыков и требуемых навыков
 
     Аргументы:
-    candidate_skills - список навыков кандидата
-    required_skills - словарь требуемых навыков и их рейтингов
-    total_score - сумма всех баллов требуемых навыков
-    missing_skills - словарь для сохранения недостающих навыков
+
 
     Возвращает:
     Процент соответствия кандидата
@@ -31,17 +28,32 @@ def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, st
             else:
                 missing_skills.add(skill)
 
-            if skill in studied_skills:
-                candidate_score += rating
-                if skill in missing_skills:
-                    missing_skills.remove(skill)
-            else:
-                missing_skills.add(skill)
+            for program in studied_programs:
+                # Если есть релевантная программа обучения, достаем оттуда навыки
+                studied_skills = []
+                if program:
+                    studied_skills_db = get_study_program_as_dataframe(program, vacancy)
+
+                    for index, row in studied_skills_db:
+                        skill = row['Компетенция']
+                        rate = row[vacancy]
+                        if rate != 0:
+                            studied_skills.append(skill)
+
+                if skill in studied_skills:
+                    candidate_score += rating
+                    if skill in missing_skills:
+                        missing_skills.remove(skill)
+                else:
+                    missing_skills.add(skill)
 
 
 
-    if university:
-        candidate_score *= (1 + uni_percentage / 11 * university_rank_values[university])
+    if universities:
+        uni_add = 0
+        for university in universities:
+            uni_add = max(uni_add, university_rank_values[university])
+        candidate_score *= (1 + uni_percentage / 11 * uni_add)
 
     # Вычисляем процент соответствия
     if total_score == 0:
@@ -49,67 +61,49 @@ def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, st
     return round((candidate_score / total_score) * 100, 2)
 
 
-def processing_resume(candidate_info: dict, vacancy_name: str, user_skills: list[str],
-                      experience: bool, study_program: str, university: str):
+def processing_resume(candidate_info: dict, user_skills: list[str],
+                      studied_programs: list[str], universities: list[str]):
     """
     Обрабатывает резюме кандидата и вычисляет его соответствие вакансии
 
     Аргументы:
-    candidate_id - ID кандидата
-    vacancy_name - название вакансии
-    user_skills - массив навыков пользователя в str
+
 
 
     """
-    # Здесь должна быть логика получения данных из БД
-    # Для примера используем заглушки
-
-    # Получаем требуемые навыки для вакансии из БД
-    # В реальной программе это будет запрос к БД по vacancy_name
 
 
+    #Достаем навыки с вакансии
+    vacancy_name = candidate_info['vacancy']
     required_skills_db = get_vacancies_as_dataframe(vacancy_name)
 
-    #Если есть релевантная программа обучения
-    studied_skills = []
-    if study_program:
-        studied_skills_db = get_study_program_as_dataframe(study_program, vacancy_name)
 
-
-        for index, row in studied_skills_db:
-            skill = row['Компетенция']
-            rate = row[vacancy_name]
-            if rate != 0:
-                studied_skills.append(skill)
-
-
+    #Собираем знаменатель метрики
     total_score = 0
     for rate in required_skills_db['Уровень владения']:
         total_score += rate
-    total_score += ...
-    total_score *= 1 + uni_percentage
-    # Получаем навыки кандидата
-    pass
+    total_score += total_score
+    total_score *= (1 + uni_percentage)
 
-    # Создаем матрицу навыков кандидата
+
+
 
     # Словарь для недостающих навыков
     missing_skills = set()
 
     # Вычисляем релевантность
-    percentage = relevance(user_skills, required_skills_db, studied_skills,
-                           total_score, experience, missing_skills, university)
+    percentage = relevance(user_skills, required_skills_db, studied_programs,
+                           total_score, missing_skills, universities, vacancy_name)
 
-    # Получаем информацию о кандидате из БД
-    # В реальной программе это будет запрос к БД по candidate_id
+
 
 
     # Формируем сообщение
     match_message = f"Подходит на позицию {vacancy_name} на {percentage:.2f}%"
 
     new_row = {
-        'full_name': candidate_info['full_name'],
-        'date_birth': candidate_info['birth_date'],
+        'full_name': candidate_info['fio'],
+        'date_birth': candidate_info['birthdate'],
         'phone_number':candidate_info ['phone'],
         'email': candidate_info['email'],
         'job_title': vacancy_name,
@@ -128,24 +122,28 @@ def processing_resume(candidate_info: dict, vacancy_name: str, user_skills: list
 
 
 # Пример использования
-if __name__ == "__main__":
-    # Пример входных данных
-    candidate_info = {
-        'full_name': 'Филькин Филя Филимонович',
-        'email': 'filkin@example.com',
-        'phone': '+0000000',
-        'birth_date': '01.01.1900'
-    }
-    vacancy_name = "Аналитик данных"
-    user_skills = [
-                   'Языки программирования и библиотеки (Python, C++)'
-                   ]
-    experience = False
 
-    # Обработка резюме
-    result = processing_resume(candidate_info, vacancy_name, user_skills, experience)
+# Пример входных данных
+# candidate_info = {'fio': 'Егоров Кирилл Романович',
+#                   'birthdate': '2000-10-10',
+#                   'phone': '+71112223344',
+#                   'email': 'egorkirillov@gmail.com',
+#                   'vacancy': 'Аналитик данных'}
+#
+# studied_programs = []
+# candidate_universities = []
+#
+# user_skills = ['Качество и предобработка данных, подходы и инструменты',
+#                'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
+#                'Языки программирования и библиотеки (Python, C++)']
 
-    # Вывод результатов
-    print(result['match_message'])
-    print("Контактная информация:", result['candidate_info'])
-    print("Недостающие навыки:", str(result['missing_skills']))
+candidate_data = process_folder('rezyume')
+print(candidate_data)
+candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
+# Обработка резюме
+result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
+
+# Вывод результатов
+print(result['match_message'])
+print("Контактная информация:", result['candidate_info'])
+print("Недостающие навыки:", str(result['missing_skills']))

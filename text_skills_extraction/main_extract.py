@@ -1,10 +1,11 @@
 import os
-from text_extract import define_type
-from skills_extract import analyze_skills
-from additional_inf_autoextract import phone_number_extract, email_extract
-from additional_inf_input import collect_applicant_data
+from text_skills_extraction.skills_extract import analyze_skills
+from text_skills_extraction.text_extract import define_type
+
+from text_skills_extraction.additional_inf_autoextract import phone_number_extract, email_extract
+from text_skills_extraction.additional_inf_input import collect_applicant_data
 # from test import *
-from university_faculty_extract import find_universities, extract_faculty
+from text_skills_extraction.university_faculty_extract import find_universities, extract_faculty
 
 
 def process_folder(folder_path):
@@ -33,5 +34,4 @@ def process_folder(folder_path):
             return applicant_data, university, faculties, found_skills
 
 
-folder_path = "rezyume"  # Укажите путь к папке с файлами
-print(process_folder(folder_path))
+

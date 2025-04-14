@@ -1,6 +1,6 @@
 import spacy
 from spacy.matcher import PhraseMatcher
-from dictionaries import skills
+from text_skills_extraction.dictionaries import skills
 
 # Загрузка русской языковой модели (предварительно установите: python -m spacy download ru_core_news_sm)
 nlp = spacy.load("ru_core_news_sm")

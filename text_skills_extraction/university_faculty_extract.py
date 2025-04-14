@@ -1,7 +1,7 @@
 import re
 from fuzzywuzzy import fuzz
 from pymorphy3 import MorphAnalyzer
-from dictionaries import university_synonyms, faculty_synonyms
+from text_skills_extraction.dictionaries import university_synonyms, faculty_synonyms
 
 # Инициализация анализатора
 morph = MorphAnalyzer()
