@@ -523,144 +523,278 @@ university_synonyms = {
 # = Словарь навыков (категория -> ключевые фразы) =
 # =================================================
 skills = {
+    # Общие компетенции
     "Определения, история развития и главные тренды ИИ": [
-        "история искусственного интеллекта", "тренды ии", "определение ии",
-        "развитие искусственного интеллекта", "ai trends"
+        "история ии", "тренды искусственного интеллекта", "ai history",
+        "развитие ai", "этапы развития ии", "main ai trends", "ai определения",
+        "искусственный интеллект тренды"
     ],
-    "Процесс, стадии и методологии разработки решений на основе ИИ": [
-        "docker", "linux", "bash", "git", "ci/cd", "mlops",
-        "жизненный цикл модели", "методологии разработки"
+    "Процесс, стадии и методологии разработки решений на основе ИИ (Docker, Linux/Bash, 6it)": [
+        "docker", "linux", "bash", "6it", "mlops", "ci/cd",
+        "жизненный цикл модели", "методологии разработки ии",
+        "devops для ai", "контейнеризация", "инфраструктура ml"
     ],
     "Статистические методы и первичный анализ данных": [
-        "статистический анализ", "descriptive statistics", "eda",
-        "exploratory data analysis", "анализ распределений"
+        "статистический анализ", "eda", "exploratory data analysis",
+        "descriptive statistics", "анализ распределений", "первичная обработка данных",
+        "визуализация данных", "предварительный анализ"
     ],
-    "Промпт-инжиниринг": [
-        "промпт инжиниринг", "prompt engineering", "настройка промптов",
-        "конструирование промптов", "оптимизация запросов llm"
+    "Пролит- инжиниринг": [
+        "пролит", "prolit engineering", "инжиниринг пролит",
+        "проектирование пролит-систем"
     ],
     "Инструменты CitizenDS": [
-        "citizend", "citizen data science", "low-code ai",
-        "графический интерфейс для ml"
+        "citizends", "citizen data science tools", "инструменты citizends",
+        "ds платформы"
     ],
     "Оценка качества работы методов ИИ": [
-        "метрики качества", "accuracy", "precision", "recall",
-        "f1-score", "roc auc", "валидация модели"
+        "метрики качества моделей", "accuracy", "precision", "recall",
+        "f1-score", "валидация моделей", "аудит алгоритмов"
     ],
-    "Языки программирования и библиотеки": [
-        "python", "c++", "numpy", "pandas", "scikit-learn",
-        "tensorflow", "pytorch", "opencv", "keras"
+    "Языки программирования и библиотеки (Python, C++)": [
+        "python", "c++", "питон", "пайтон", "numpy", "pandas", "scikit-learn",
+        "tensorflow", "pytorch", "программирование на python"
     ],
     "Этика ИИ": [
-        "этика искусственного интеллекта", "ai ethics",
-        "ответственный ai", "этические принципы ии"
+        "этика искусственного интеллекта", "ai ethics", "ответственный ai",
+        "этические проблемы ии", "ai governance"
     ],
     "Безопасность ИИ": [
-        "безопасность искусственного интеллекта", "adversarial attacks",
-        "атаки на модели", "защита моделей"
+        "безопасность искусственного интеллекта", "ai security",
+        "кибербезопасность ml", "adversarial attacks", "защита моделей"
     ],
     "Цифровые двойники": [
-        "цифровой двойник", "digital twin", "симуляция объектов",
-        "виртуальная копия"
+        "digital twins", "цифровые двойники", "digital twin технологии",
+        "виртуальные двойники"
     ],
+
+    # Алгоритмы и методы ИИ
     "Методы машинного обучения": [
-        "машинное обучение", "ml", "классификация", "регрессия",
-        "кластеризация", "ансамбли моделей"
+        "ml", "машинное обучение", "supervised learning", "unsupervised learning",
+        "классификация", "регрессия", "кластеризация"
     ],
     "Методы оптимизации": [
-        "градиентный спуск", "оптимизация гиперпараметров",
-        "bayesian optimization", "genetic algorithms"
+        "оптимизация алгоритмов", "градиентный спуск", "adam", "rmsprop",
+        "hyperparameter tuning", "байесовская оптимизация"
     ],
     "Информационный поиск": [
-        "information retrieval", "поисковые алгоритмы",
-        "ранжирование результатов", "tf-idf", "bm25"
+        "information retrieval", "поисковые алгоритмы", "ранжирование",
+        "tf-idf", "bm25", "поиск информации"
     ],
     "Рекомендательные системы": [
-        "recommender systems", "коллаборативная фильтрация",
-        "content-based filtering", "матричные разложения"
+        "recommender systems", "collaborative filtering", "content-based filtering",
+        "рекомендательные алгоритмы", "системы рекомендаций"
     ],
     "Анализ изображений и видео": [
-        "computer vision", "cv", "обработка изображений",
-        "обнаружение объектов", "yolo", "opencv"
+        "computer vision", "cv", "обработка изображений", "распознавание объектов",
+        "сегментация", "yolo", "openCV"
     ],
     "Анализ естественного языка": [
-        "nlp", "обработка естественного языка", "named entity recognition",
-        "stemming", "lemmatization", "трансформеры"
+        "nlp", "natural language processing", "обработка текста",
+        "named entity recognition", "токенизация", "stemming"
     ],
     "Основы глубокого обучения": [
-        "глубокое обучение", "нейронные сети", "активационные функции",
-        "обратное распространение", "dropout"
+        "deep learning basics", "нейронные сети", "активационные функции",
+        "backpropagation", "deep neural networks"
     ],
     "Глубокое обучение для анализа и генерации изображений, видео": [
-        "gan", "генеративные сети", "style transfer", "super-resolution",
-        "video synthesis", "stablediffusion"
+        "gan", "генеративные сети", "style transfer", "video analysis",
+        "image generation", "stable diffusion"
     ],
     "Глубокое обучение для анализа и генерации естественного языка": [
-        "трансформеры", "bert", "gpt", "llm", "seq2seq",
-        "машинный перевод", "text generation"
+        "transformers", "bert", "gpt", "llm", "text generation",
+        "машинный перевод", "summarization"
     ],
     "Обучение с подкреплением и глубокое обучение с подкреплением": [
-        "reinforcement learning", "rl", "q-learning",
-        "policy gradient", "deep q-network"
+        "reinforcement learning", "rl", "q-learning", "deep q-network",
+        "policy gradient", "ppo"
     ],
     "Гибридные модели и PIML": [
-        "physics-informed ml", "piml", "гибридные модели",
-        "нейросетевые дифференциальные уравнения"
+        "piml", "physics-informed ml", "гибридные алгоритмы",
+        "комбинированные модели"
     ],
     "Анализ геоданных": [
-        "геоаналитика", "gis", "пространственный анализ",
-        "картография", "geopandas"
+        "geospatial analysis", "gis", "обработка геоданных",
+        "картографические данные", "spatial data"
     ],
     "Массово параллельные вычисления для ускорения машинного обучения (GPU)": [
-        "gpu", "cuda", "tensor cores", "parallel computing",
-        "nvidia", "v100", "a100"
+        "gpu computing", "cuda", "parallel computing", "nvidia",
+        "ускорение ml", "tensor cores"
     ],
     "Работа с распределенной кластерной системой": [
-        "распределенные вычисления", "kubernetes", "k8s",
-        "кластерные системы", "horovod"
+        "распределенные кластеры", "hadoop cluster", "spark cluster",
+        "kubernetes", "кластерные вычисления"
     ],
     "Машинное обучение на больших данных": [
-        "big data", "большие данные", "apache hadoop",
-        "распределенная обработка", "mapreduce"
+        "big data ml", "large-scale ml", "обучение на больших данных",
+        "distributed ml"
     ],
     "Потоковая обработка данных (data streaming, event processing)": [
-        "data streaming", "kafka", "apache flink", "real-time processing",
-        "event-driven architecture"
+        "data streaming", "kafka streams", "real-time processing",
+        "стриминг данных", "обработка событий"
     ],
     "Графовые нейросети": [
-        "графовые сети", "gnn", "graph neural network",
-        "graph convolution", "node embedding"
+        "gnn", "graph neural networks", "графовые сети",
+        "node embedding", "graph convolutions"
     ],
-    "SQL базы данных": [
-        "sql", "greenplum", "postgres", "postgresql",
-        "oracle", "реляционные базы"
+
+    # Работа с данными
+    "SQL базы данных (GreenPlum, Postgres, Oracle)": [
+        "sql", "postgresql", "oracle db", "greenplum", "реляционные базы",
+        "sql queries", "oltp"
     ],
-    "NoSQL базы данных": [
-        "nosql", "cassandra", "mongodb", "elasticsearch",
-        "neo4j", "hbase", "документные базы"
+    "NoSQL базы данных (Cassandra, MongoDB, ElasticSearch, Neo4J, Hbase)": [
+        "nosql", "mongodb", "cassandra", "elasticsearch", "neo4j",
+        "hbase", "document database", "graph database"
     ],
     "Массово параллельная обработка и анализ данных": [
-        "parallel processing", "распределенная обработка",
-        "multiprocessing", "dask", "ray"
+        "massively parallel processing", "mpp", "parallel data processing",
+        "распределенная обработка"
     ],
     "Hadoop, SPARK, Hive": [
-        "hadoop", "spark", "apache spark", "hive",
-        "hdfs", "pyspark", "spark sql"
+        "hadoop", "spark", "hive", "hdfs", "mapreduce", "spark sql",
+        "hadoop ecosystem"
     ],
     "Шины данных (kafka)": [
-        "kafka", "apache kafka", "message broker",
-        "event streaming", "шина данных"
+        "kafka", "message broker", "data bus", "event streaming",
+        "распределенные очереди"
     ],
     "Качество и предобработка данных, подходы и инструменты": [
-        "предобработка данных", "data cleaning", "feature engineering",
-        "missing values", "pandas", "scikit-learn"
+        "data cleaning", "data preprocessing", "feature engineering",
+        "imputation", "нормализация данных", "data wrangling"
     ],
     "Графы знаний и онтологии": [
-        "knowledge graph", "граф знаний", "ontology",
-        "семантические сети", "rdf", "sparql"
+        "knowledge graphs", "ontologies", "rdf", "sparql",
+        "семантические сети", "neo4j graph"
     ]
 }
 
-faculty_synonyms = {
+# Направления
+program_synonyms = ["Прикладная математика и информатика",
+                    "Высшая школа программной инженерии",
+                    "Прикладной анализ данных",
+                    "Программная инженерия",
+                    "Анализ данных и цифровые технологии",
+                    "Прикладной анализ данных и искусственный интеллект",
+                    "Компьютерные технологии",
+                    "Науки о данных",
+                    "AI360: ML NATIVE",
+                    "Инженерия искусственного интеллекта",
+                    "AI360: Передовые методы искусственного интеллекта",
+                    "ИИ360: Инженерия искусственного интеллекта",
+                    "AI360: Инженерия данных",
+                    "Алгоритмы наукоемкого программного обеспечения",
+                    "Искусственный интеллект",
+                    "Искусственный интеллект и машинное обучение"
+                    ]
 
+program_dict = {
+    # 1. Прикладная математика и информатика
+    "Прикладная математика и информатика": [
+        "пми",
+        "applied mathematics and computer science",
+    ],
+
+    # 2. Высшая школа программной инженерии
+    "Высшая школа программной инженерии": [
+        "школа программной инженерии",
+        "вшпи",
+    ],
+
+    # 3. Прикладной анализ данных
+    "Прикладной анализ данных": [
+        "data analysis",
+        "прикладной дата анализ",
+        "data science"
+    ],
+
+    # 4. Программная инженерия
+    "Программная инженерия": [
+        "software engineering",
+        "программная инженерия",
+        "se"
+    ],
+
+    # 5. Анализ данных и цифровые технологии
+    "Анализ данных и цифровые технологии": [
+        "цифровые технологии",
+        "data analysis and digital technologies",
+        "дата анализ",
+        "digital tech"
+    ],
+
+    # 6-7. Прикладной анализ данных и искусственный интеллект
+    "Прикладной анализ данных и искусственный интеллект": [
+        "data analysis and ai",
+        "аналитика данных с искусственным интеллектом",
+        "дата саенс и ai"
+    ],
+
+    # 8. Компьютерные технологии
+    "Компьютерные технологии": [
+        "computer technologies",
+        "комп технол",
+        "it технологии"
+    ],
+
+    # 9. Науки о данных
+    "Науки о данных": [
+        "data science",
+        "науки о данных"
+        "ds"
+    ],
+
+    # 10. AI360: ML NATIVE
+    "AI360: ML NATIVE": [
+        "ai360 ml native",
+        "ai360 machine learning",
+        "ml native",
+        "ии360 мл натив"
+    ],
+
+    # 11. Инженерия искусственного интеллекта
+    "Инженерия искусственного интеллекта": [
+        "ai engineering",
+        "инженерия ии",
+        "engineering artificial intelligence"
+    ],
+
+    # 12. AI360: Передовые методы искусственного интеллекта
+    "AI360: Передовые методы искусственного интеллекта": [
+        "ai360 передовые методы",
+        "advanced ai methods",
+        "ai360 advanced",
+    ],
+
+    # 13. ИИ360: Инженерия искусственного интеллекта
+    "ИИ360: Инженерия искусственного интеллекта": [
+        "ии360 инженерия",
+        "ai360 engineering",
+        "ии360 ai engineering",
+    ],
+
+    # 14. AI360: Инженерия данных
+    "AI360: Инженерия данных": [
+        "ai360 data engineering",
+        "инженерия данных 360",
+        "data engineering ai360",
+    ],
+
+    # 15. Алгоритмы наукоемкого программного обеспечения
+    "Алгоритмы наукоемкого программного обеспечения": [
+        "science-intensive software",
+    ],
+
+    # 16. Искусственный интеллект
+    "Искусственный интеллект": [
+        "искусственный интеллект",
+        "art intel"
+    ],
+
+    # 17. Искусственный интеллект и машинное обучение
+    "Искусственный интеллект и машинное обучение": [
+        "ии и мо",
+        "ai and ml",
+        "artificial intelligence and machine learning"
+    ]
 }
