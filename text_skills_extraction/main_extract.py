@@ -3,8 +3,7 @@ from text_extract import define_type
 from skills_extract import analyze_skills
 from additional_inf_autoextract import phone_number_extract, email_extract
 from additional_inf_input import collect_applicant_data
-# from test import *
-from university_faculty_extract import find_universities, extract_faculty
+from university_faculty_extract import find_universities, extract_education_programs
 
 
 def process_folder(folder_path):
@@ -26,12 +25,13 @@ def process_folder(folder_path):
             name = "ФИО" # ФИО
 
             university = find_universities(text_from_file) # Универ
-            faculties = extract_faculty(text_from_file) # Направления
+            faculties = extract_education_programs(text_from_file) # Направления
 
             applicant_data = collect_applicant_data(
                 fio=name, birthdate=birth_date, phone=phone_num, email=email_extracted)
             print("Найденные ВУЗы:", *university)
             print("Найденные направления:", *faculties)
+            print("Найденные навыки:", found_skills)
 
 
 folder_path = "rezyume"  # Укажите путь к папке с файлами
