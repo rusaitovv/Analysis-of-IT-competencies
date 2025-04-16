@@ -114,7 +114,6 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
     }
 
 
-# Пример использования
 
 # Пример входных данных
 # candidate_info = {'fio': 'Егоров Кирилл Романович',
@@ -123,7 +122,7 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
 #                   'email': 'egorkirillov@gmail.com',
 #                   'vacancy': 'Аналитик данных'}
 #
-# studied_programs = []
+# studied_programs = ['МФТИ Высшая школа программной инженерии']
 # candidate_universities = ["Московский физико-технический институт"]
 #
 # user_skills = ['Качество и предобработка данных, подходы и инструменты',
