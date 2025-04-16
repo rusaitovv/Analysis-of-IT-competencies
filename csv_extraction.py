@@ -2,6 +2,7 @@ import os
 from seatable_api import Base, context
 import pandas as pd
 import requests
+import chardet
 # Авторизация
 server_url = "https://cloud.seatable.io"  # или ваш сервер
 api_token = "db7264bef2843939860fbb9301eb1e62eb551603"        # замените на ваш API-токен
@@ -77,16 +78,19 @@ def get_study_program_as_dataframe(study_program, vacancy):
                     if file_url:
                         file_path = download_csv(file_url, study_program)
                         print(file_path)
+                        with open(file_path, 'rb') as f:
+                            encoding = chardet.detect(f.read(10000))['encoding']
                         df = pd.read_csv(file_path, sep='\s*;\s*',
                                         names=['Компетенция', 'Аналитик данных', 'Инженер данных',
                                                'Технический аналитик в ИИ', 'Менеджер в ИИ'],
-                                        encoding = 'IBM866', skiprows=2, engine='python')
+                                        encoding = encoding, engine='python')
 
                         df = df.apply(lambda x: x.str.replace('"', '') if x.dtype == 'object' else x)
 
                         df[vacancy] = pd.to_numeric(df[vacancy], errors='coerce').fillna(0).astype(
                             int)
 
-                        return df[[vacancy]]
+                        return df[['Компетенция', vacancy]]
 
     return None  # Если не найдено
+

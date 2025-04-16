@@ -19,6 +19,20 @@ def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, st
     """
     candidate_score = 0
 
+    #Берем навыки с программ обучения
+    studied_skills = set()
+    for program in studied_programs:
+        # Если есть релевантная программа обучения, достаем оттуда навыки
+
+        if program:
+            studied_skills_db = get_study_program_as_dataframe(program, vacancy)
+
+            for index, row in studied_skills_db.iterrows():
+                skill = row['Компетенция']
+                rate = row[vacancy]
+                if rate != 0:
+                    studied_skills.add(skill)
+
     for index, row in required_skills.iterrows():
         skill = row['Компетенция']
         rating = row['Уровень владения']
@@ -28,24 +42,12 @@ def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, st
             else:
                 missing_skills.add(skill)
 
-            for program in studied_programs:
-                # Если есть релевантная программа обучения, достаем оттуда навыки
-                studied_skills = []
-                if program:
-                    studied_skills_db = get_study_program_as_dataframe(program, vacancy)
-
-                    for index, row in studied_skills_db:
-                        skill = row['Компетенция']
-                        rate = row[vacancy]
-                        if rate != 0:
-                            studied_skills.append(skill)
-
-                if skill in studied_skills:
-                    candidate_score += rating
-                    if skill in missing_skills:
-                        missing_skills.remove(skill)
-                else:
-                    missing_skills.add(skill)
+            if skill in studied_skills:
+                candidate_score += rating
+                if skill in missing_skills:
+                    missing_skills.remove(skill)
+            else:
+                missing_skills.add(skill)
 
 
 
@@ -82,7 +84,7 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
     total_score = 0
     for rate in required_skills_db['Уровень владения']:
         total_score += rate
-    total_score += total_score
+    total_score += total_score * uni_percentage
     total_score *= (1 + uni_percentage)
 
 
@@ -108,8 +110,7 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
         'email': candidate_info['email'],
         'job_title': vacancy_name,
         'points': percentage,
-        'missing_skills': str(missing_skills),
-        'relevant_skills': str(set(user_skills) - set(missing_skills))
+        'missing_skills': str(missing_skills)
     }
     base.append_row('Candidates', new_row)
 
@@ -124,22 +125,24 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
 # Пример использования
 
 # Пример входных данных
-# candidate_info = {'fio': 'Егоров Кирилл Романович',
-#                   'birthdate': '2000-10-10',
-#                   'phone': '+71112223344',
-#                   'email': 'egorkirillov@gmail.com',
-#                   'vacancy': 'Аналитик данных'}
-#
-# studied_programs = []
-# candidate_universities = []
-#
-# user_skills = ['Качество и предобработка данных, подходы и инструменты',
-#                'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
-#                'Языки программирования и библиотеки (Python, C++)']
+candidate_info = {'fio': 'Егоров Кирилл Романович',
+                  'birthdate': '2000-10-10',
+                  'phone': '+71112223344',
+                  'email': 'egorkirillov@gmail.com',
+                  'vacancy': 'Аналитик данных'}
 
-candidate_data = process_folder('rezyume')
-print(candidate_data)
-candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
+studied_programs = []
+candidate_universities = ["Московский физико-технический институт"]
+
+user_skills = ['Качество и предобработка данных, подходы и инструменты',
+               'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
+               'Языки программирования и библиотеки (Python, C++)']
+
+# candidate_data = process_folder('rezyume')
+# print(candidate_data)
+# candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
+
+studied_programs += ['ВШЭ Прикладная математика и информатика', 'МФТИ Высшая школа программной инженерии']
 # Обработка резюме
 result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
 
