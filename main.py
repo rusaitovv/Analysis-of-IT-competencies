@@ -37,15 +37,8 @@ def relevance(candidate_skills: list[str], required_skills: pandas.DataFrame, st
         skill = row['Компетенция']
         rating = row['Уровень владения']
         if rating != 0:
-            if skill in candidate_skills:
+            if (skill in candidate_skills) or (skill in studied_skills):
                 candidate_score += rating
-            else:
-                missing_skills.add(skill)
-
-            if skill in studied_skills:
-                candidate_score += rating
-                if skill in missing_skills:
-                    missing_skills.remove(skill)
             else:
                 missing_skills.add(skill)
 
@@ -84,7 +77,6 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
     total_score = 0
     for rate in required_skills_db['Уровень владения']:
         total_score += rate
-    total_score += total_score * uni_percentage
     total_score *= (1 + uni_percentage)
 
 
@@ -142,7 +134,7 @@ user_skills = ['Качество и предобработка данных, п�
 # print(candidate_data)
 # candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
 
-studied_programs += ['ВШЭ Прикладная математика и информатика', 'МФТИ Высшая школа программной инженерии']
+studied_programs += []
 # Обработка резюме
 result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
 
