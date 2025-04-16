@@ -24,9 +24,11 @@ python main_candidate.py
 ```
 ### Пример ввода
 
-![candidate_input](https://github.com/user-attachments/assets/4f5f5b77-9994-4be4-ab93-5c312c71c469)
+
+<img src="https://github.com/user-attachments/assets/4f5f5b77-9994-4be4-ab93-5c312c71c469" width="700" height="310">
+
 ### Пример вывода
-<img src="https://github.com/user-attachments/assets/034952ec-7a50-4113-879f-489ddf1ebc04" width="700" height="280">
+<img src="https://github.com/user-attachments/assets/034952ec-7a50-4113-879f-489ddf1ebc04" width="500" height="200">
 
 
 ### Для рекрутера: 
