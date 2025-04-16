@@ -117,24 +117,22 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
 # Пример использования
 
 # Пример входных данных
-candidate_info = {'fio': 'Егоров Кирилл Романович',
-                  'birthdate': '2000-10-10',
-                  'phone': '+71112223344',
-                  'email': 'egorkirillov@gmail.com',
-                  'vacancy': 'Аналитик данных'}
+# candidate_info = {'fio': 'Егоров Кирилл Романович',
+#                   'birthdate': '2000-10-10',
+#                   'phone': '+71112223344',
+#                   'email': 'egorkirillov@gmail.com',
+#                   'vacancy': 'Аналитик данных'}
+#
+# studied_programs = []
+# candidate_universities = ["Московский физико-технический институт"]
+#
+# user_skills = ['Качество и предобработка данных, подходы и инструменты',
+#                'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
+#                'Языки программирования и библиотеки (Python, C++)']
 
-studied_programs = []
-candidate_universities = ["Московский физико-технический институт"]
+candidate_data = process_folder('rezyume')
+candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
 
-user_skills = ['Качество и предобработка данных, подходы и инструменты',
-               'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
-               'Языки программирования и библиотеки (Python, C++)']
-
-# candidate_data = process_folder('rezyume')
-# print(candidate_data)
-# candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
-
-studied_programs += []
 # Обработка резюме
 result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
 
