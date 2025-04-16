@@ -48,11 +48,28 @@ python main_hr.py
 * Рег рекрутер.png - экран регистрации рекрутера
 * Кандидаты.png - экран представления релевантных кандидатов
 
-<img src="https://github.com/user-attachments/assets/a7b40bc9-237d-442d-95fb-f913fe051cf7" width="135" height="293"> <img
-src="https://github.com/user-attachments/assets/4846a952-8296-4b2c-9559-fb16d70f8e45" width="135" height="293"> <img
-src="https://github.com/user-attachments/assets/8113c562-5f51-423f-92ec-7638ab7668ea" width="135" height="293"> <img
-src="https://github.com/user-attachments/assets/8dc1f3e1-0111-488a-b92d-3898ca9b9392" width="135" height="293">
+<img src="https://github.com/user-attachments/assets/b549da3d-f975-45b2-9171-4e75e5a92ca2" width="135" height="293"> <img
+src="https://github.com/user-attachments/assets/93fab832-7202-489f-9ad3-a9e8f9e614d6" width="135" height="293"> <img
+src="https://github.com/user-attachments/assets/aceec8ec-c482-4b23-aef4-9c8c7802a1e3" width="135" height="293"> <img
+src="https://github.com/user-attachments/assets/fa5407c4-20b9-450c-8d6e-6d4cc177c446" width="135" height="293">
+
 
 ### Содержание файлов
 Название    | Содержание 
 -----------------|----------------------
+Design|Дизайн-файлы
+Matrix|Функция генерации матрицы компетенции по введенной вакансии (доп. функционал)
+rezyume|Папка для загрузки резюме
+screenshots|Примеры работы программы
+text_skills_extraction|Код извлечения текстовой информации из резюме
+additional_inf_autoextract.py|
+additional_inf_input.py|
+dictionaries.py|
+main_extract.py|
+skills_extract.py|
+text_extract.py|
+university_faculty_extract.py|
+csv_extraction.py|Содержит функции, извлекающие из Базы данных матрицы компетенций (по названию вакансии) и матрицы навыков с учебных программ (по названию учебной программы и названию вакансии) в виде csv файлов и возвращающие таблицы pandas.DataFrame
+main_candidate.py|Получает информацию о кандидате, его навыках, учебной программе и ВУЗе. Скачивает нужные матрицы из Базы данных. Сравнивает навыки кандидата, навыки, которые он получил на программе обучения (если она в списке в приоритетных) с требуемыми навыками из матрицы компетенций. Домножает рейтинг на коэффициент, зависящий от ранга ВУЗа. Считает список недостающих навыков. Загружает в БД информацию о кандидате, его процент соответствия вакансии и список недостающих навыков.
+main_hr.py|По выбранной рекрутером вакансии достает из БД данные по кандидатам, отсортировав их по убыванию процента соответствия вакансии. Выводит информацию о кандидатах на экран.
+requirements.txt|Необходимые библиотеки
