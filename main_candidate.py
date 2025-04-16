@@ -136,6 +136,7 @@ candidate_info, candidate_universities, studied_programs, user_skills = candidat
 result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
 
 # Вывод результатов
-print(result['match_message'])
-print("Контактная информация:", result['candidate_info'])
-print("Недостающие навыки:", str(result['missing_skills']))
+print('\nБлагодарим за отклик! Ваше резюме успешно обработано!')
+# print(result['match_message'])
+# print("Контактная информация:", result['candidate_info'])
+# print("Недостающие навыки:", str(result['missing_skills']))

@@ -49,7 +49,6 @@ def get_vacancies_as_dataframe(job_title):
 
                     if file_url:
                         file_path = download_csv(file_url, job_title)
-                        print(file_path)
                         df = pd.read_csv(file_path, sep='\s*;\s*',
                                         names=['Компетенция', 'Уровень владения'], encoding = 'IBM866',
                                         skiprows=2, engine='python')
