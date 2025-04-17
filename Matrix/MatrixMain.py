@@ -106,8 +106,8 @@ def main():
     # Создание DataFrame
     df = pd.DataFrame(
         list(ratings.items()),
-        columns=['Навык', 'Рейтинг']
-    ).sort_values('Рейтинг', ascending=False)
+        columns=['Компетенция', 'Уровень владения']
+    ).sort_values('Уровень владения', ascending=False)
 
     # Сохранение и вывод
     df.to_csv(f'{profession}_{city}_skills_matrix.csv', index=False)
