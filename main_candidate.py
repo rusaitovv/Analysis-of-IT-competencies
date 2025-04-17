@@ -128,15 +128,15 @@ def processing_resume(candidate_info: dict, user_skills: list[str],
 # user_skills = ['Качество и предобработка данных, подходы и инструменты',
 #                'Методы машинного обучения', 'Процесс, стадии и методологии разработки решений на основе ИИ',
 #                'Языки программирования и библиотеки (Python, C++)']
+def main_candidate():
+    candidate_data = process_folder('rezyume')
+    candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
 
-candidate_data = process_folder('rezyume')
-candidate_info, candidate_universities, studied_programs, user_skills = candidate_data
+    # Обработка резюме
+    result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
 
-# Обработка резюме
-result = processing_resume(candidate_info, user_skills, studied_programs, candidate_universities)
-
-# Вывод результатов
-print('\nБлагодарим за отклик! Ваше резюме успешно обработано!')
+    # Вывод результатов
+    print('\nБлагодарим за отклик! Ваше резюме успешно обработано!')
 # print(result['match_message'])
 # print("Контактная информация:", result['candidate_info'])
 # print("Недостающие навыки:", str(result['missing_skills']))
